@@ -170,6 +170,26 @@ Mažesniuose duomenų rinkiniuose skirtumai buvo nedideli, o didžiausiame teste
 
 Todėl pagal šiuos matavimus negalima teigti, kad vienas konteineris visais atvejais yra efektyvesnis rezultatų įrašymui.
 
+## Našumo palyginimo diagramos
+
+Žemiau pateiktose diagramose vaizduojamas `std::vector` ir `std::list` vykdymo laiko palyginimas, atsižvelgiant į studentų skaičių. Pateikti penkių pakartojimų vidurkiai.
+
+### Duomenų nuskaitymas
+
+![Duomenų nuskaitymo palyginimas](docs/reading.png)
+
+### Studentų grupavimas
+
+![Studentų grupavimo palyginimas](docs/grouping.png)
+
+### Studentų rūšiavimas
+
+![Studentų rūšiavimo palyginimas](docs/sorting.png)
+
+### Rezultatų įrašymas
+
+![Rezultatų įrašymo palyginimas](docs/writing.png)
+
 ## Bendros išvados
 
 Atlikus `std::vector` ir `std::list` našumo palyginimą, galima išskirti šias išvadas:
