@@ -1,0 +1,14 @@
+# Vykdomieji failai
+*.exe
+
+# Sugeneruoti studentų duomenys
+studentai*.txt
+
+# Sugeneruoti grupavimo rezultatai
+galutiniai_rezultatai.txt
+kieti.txt
+maziaukieti.txt
+vector_*_kieti.txt
+vector_*_maziaukieti.txt
+list_*_kieti.txt
+list_*_maziaukieti.txt
