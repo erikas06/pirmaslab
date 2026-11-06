@@ -213,6 +213,17 @@ Programos paleidimas:
 
 Windows aplinkoje:
 
+## Kompiuterio techninės įrangos nuotraukos
+
+### Procesorius (CPU)
+![CPU](docs/cpu.png)
+
+### Operatyvioji atmintis (RAM)
+![RAM](docs/ram.png)
+
+### SSD diskas
+![SSD](docs/ssd.png)
+
 ```powershell
 .\programa.exe
 ```
