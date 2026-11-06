@@ -33,4 +33,7 @@ void rasytiRezultatus(const list<Studentas>& studentai,
                       double& rusiavimoLaikas,
                       double& irasymoLaikas);
 
+// Automatinis vector ir list palyginimas su penkiais duomenu kiekiais.
+void vykdytiNasumoTesta();
+
 #endif

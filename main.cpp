@@ -224,23 +224,26 @@ void vykdytiPrograma(Konteineris& studentai) {
 }
 
 int main() {
-    cout << "Pasirinkite konteineri:\n"
-         << "1 - std::vector\n"
-         << "2 - std::list\n";
+    cout << "Pasirinkite veiksma:\n"
+         << "1 - Dirbti su std::vector\n"
+         << "2 - Dirbti su std::list\n"
+         << "3 - Automatinis vector ir list nasumo palyginimas\n";
 
     int pasirinkimas;
     do {
         cin >> pasirinkimas;
-        if (pasirinkimas != 1 && pasirinkimas != 2)
-            cout << "Iveskite 1 arba 2: ";
-    } while (pasirinkimas != 1 && pasirinkimas != 2);
+        if (pasirinkimas < 1 || pasirinkimas > 3)
+            cout << "Iveskite 1, 2 arba 3: ";
+    } while (pasirinkimas < 1 || pasirinkimas > 3);
 
     if (pasirinkimas == 1) {
         vector<Studentas> studentai;
         vykdytiPrograma(studentai);
-    } else {
+    } else if (pasirinkimas == 2) {
         list<Studentas> studentai;
         vykdytiPrograma(studentai);
+    } else {
+        vykdytiNasumoTesta();
     }
 
     return 0;
