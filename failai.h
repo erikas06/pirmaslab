@@ -1,3 +1,4 @@
+
 #ifndef FAILAI_H
 #define FAILAI_H
 
@@ -6,29 +7,27 @@
 #include <list>
 #include <string>
 
-using namespace std;
+double skaitytiIsFailo(std::vector<Studentas>& studentai, std::string failoPavadinimas);
+double skaitytiIsFailo(std::list<Studentas>& studentai, std::string failoPavadinimas);
 
-double skaitytiIsFailo(vector<Studentas>& studentai, string failoPavadinimas);
-double skaitytiIsFailo(list<Studentas>& studentai, string failoPavadinimas);
+void generuotiFaila(std::string failoPavadinimas, int studentuKiekis);
 
-void generuotiFaila(string failoPavadinimas, int studentuKiekis);
+void padalintiStudentus(const std::vector<Studentas>& studentai,
+                        std::vector<Studentas>& maziaukieti,
+                        std::vector<Studentas>& kieti);
 
-void padalintiStudentus(const vector<Studentas>& studentai,
-                        vector<Studentas>& maziaukieti,
-                        vector<Studentas>& kieti);
+void padalintiStudentus(const std::list<Studentas>& studentai,
+                        std::list<Studentas>& maziaukieti,
+                        std::list<Studentas>& kieti);
 
-void padalintiStudentus(const list<Studentas>& studentai,
-                        list<Studentas>& maziaukieti,
-                        list<Studentas>& kieti);
-
-void rasytiRezultatus(const vector<Studentas>& studentai,
-                      string failoPavadinimas,
+void rasytiRezultatus(const std::vector<Studentas>& studentai,
+                      std::string failoPavadinimas,
                       int rusiavimoPasirinkimas,
                       double& rusiavimoLaikas,
                       double& irasymoLaikas);
 
-void rasytiRezultatus(const list<Studentas>& studentai,
-                      string failoPavadinimas,
+void rasytiRezultatus(const std::list<Studentas>& studentai,
+                      std::string failoPavadinimas,
                       int rusiavimoPasirinkimas,
                       double& rusiavimoLaikas,
                       double& irasymoLaikas);
