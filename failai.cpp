@@ -363,6 +363,26 @@ void padalintiStudentus(
         studentai, maziaukieti, kieti);
 }
 
+// 1 strategija: vector konteinerio skaidymas.
+void padalintiStudentusStrategija1(
+    const vector<Studentas>& studentai,
+    vector<Studentas>& maziaukieti,
+    vector<Studentas>& kieti) {
+
+    padalintiStudentusBendrai(
+        studentai, maziaukieti, kieti);
+}
+
+// 1 strategija: list konteinerio skaidymas.
+void padalintiStudentusStrategija1(
+    const list<Studentas>& studentai,
+    list<Studentas>& maziaukieti,
+    list<Studentas>& kieti) {
+
+    padalintiStudentusBendrai(
+        studentai, maziaukieti, kieti);
+}
+
 void rasytiRezultatus(
     const vector<Studentas>& studentai,
     string failoPavadinimas,

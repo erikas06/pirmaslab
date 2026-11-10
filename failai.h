@@ -1,4 +1,3 @@
-
 #ifndef FAILAI_H
 #define FAILAI_H
 
@@ -19,6 +18,17 @@ void padalintiStudentus(const std::vector<Studentas>& studentai,
 void padalintiStudentus(const std::list<Studentas>& studentai,
                         std::list<Studentas>& maziaukieti,
                         std::list<Studentas>& kieti);
+
+// 1 strategija: studentai kopijuojami i du naujus konteinerius.
+void padalintiStudentusStrategija1(
+    const std::vector<Studentas>& studentai,
+    std::vector<Studentas>& maziaukieti,
+    std::vector<Studentas>& kieti);
+
+void padalintiStudentusStrategija1(
+    const std::list<Studentas>& studentai,
+    std::list<Studentas>& maziaukieti,
+    std::list<Studentas>& kieti);
 
 void rasytiRezultatus(const std::vector<Studentas>& studentai,
                       std::string failoPavadinimas,
