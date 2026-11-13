@@ -4,8 +4,6 @@
 #include <iomanip>
 #include <algorithm>
 #include <random>
-#include <fstream>
-#include <sstream>
 
 using namespace std;
 
@@ -28,51 +26,12 @@ void generuotiPazymius(Studentas& studentas, int kiekis) {
     studentas.egzaminas = dist(gen);
 }
 
-void skaitytiIsFailo(vector<Studentas>& studentai, string failoPavadinimas) {
-    ifstream failas(failoPavadinimas);
-
-    if (!failas.is_open()) {
-        cout << "Nepavyko atidaryti failo." << endl;
-        return;
-    }
-
-    string eilute;
-
-    getline(failas, eilute);
-
-    while (getline(failas, eilute)) {
-        stringstream ss(eilute);
-        Studentas studentas;
-
-        ss >> studentas.vardas >> studentas.pavarde;
-
-        vector<int> pazymiai;
-        int pazymys;
-
-        while (ss >> pazymys) {
-            pazymiai.push_back(pazymys);
-        }
-
-        if (!pazymiai.empty()) {
-            studentas.egzaminas = pazymiai.back();
-            pazymiai.pop_back();
-            studentas.nd = pazymiai;
-
-            studentai.push_back(studentas);
-        }
-    }
-
-    failas.close();
-
-    cout << "Studentai nuskaityti is failo." << endl;
-}
-
 int main() {
     vector<Studentas> studentai;
 
     cout << "Pasirinkite veiksma:" << endl;
     cout << "1 - Ivesti studentus" << endl;
-    cout << "2 - Nuskaityti studentus is failo" << endl;
+    cout << "2 - Generuoti studentus" << endl;
     cout << "0 - Baigti programa" << endl;
 
     int veiksmas;
@@ -126,8 +85,7 @@ int main() {
 
                         if (pazymys >= 1 && pazymys <= 10) {
                             studentas.nd.push_back(pazymys);
-                        }
-                        else {
+                        } else {
                             cout << "Pazymys turi buti nuo 1 iki 10." << endl;
                         }
                     }
@@ -145,8 +103,7 @@ int main() {
                         cout << "Pazymys turi buti nuo 1 iki 10." << endl;
                     }
 
-                }
-                else {
+                } else {
 
                     int kiekis;
 
@@ -191,26 +148,61 @@ int main() {
 
         else if (veiksmas == 2) {
 
-            string failoPavadinimas;
+            Studentas studentas;
 
-            cout << "Iveskite failo pavadinima: ";
-            cin >> failoPavadinimas;
+            cout << "Iveskite studento varda: ";
+            cin >> studentas.vardas;
 
-            skaitytiIsFailo(studentai, failoPavadinimas);
+            cout << "Iveskite studento pavarde: ";
+            cin >> studentas.pavarde;
+
+            int kiekis;
+
+            while (true) {
+                cout << "Kiek namu darbu pazymiu sugeneruoti? ";
+                cin >> kiekis;
+
+                if (kiekis > 0) {
+                    break;
+                }
+
+                cout << "Turi buti sugeneruotas bent vienas pazymys."
+                     << endl;
+            }
+
+            generuotiPazymius(studentas, kiekis);
+
+            cout << "Sugeneruoti namu darbu pazymiai: ";
+
+            for (int pazymys : studentas.nd) {
+                cout << pazymys << " ";
+            }
+
+            cout << endl;
+
+            cout << "Sugeneruotas egzamino pazymys: "
+                 << studentas.egzaminas << endl;
+
+            studentai.push_back(studentas);
         }
 
         else {
-
             cout << "Neteisingas pasirinkimas." << endl;
         }
 
-        cout << endl;
-        cout << "Pasirinkite veiksma:" << endl;
-        cout << "1 - Ivesti studentus" << endl;
-        cout << "2 - Nuskaityti studentus is failo" << endl;
-        cout << "0 - Baigti programa" << endl;
+        if (veiksmas != 0) {
+            cout << endl;
+            cout << "Pasirinkite veiksma:" << endl;
+            cout << "1 - Ivesti studentus" << endl;
+            cout << "2 - Generuoti studentus" << endl;
+            cout << "0 - Baigti programa" << endl;
 
-        cin >> veiksmas;
+            cin >> veiksmas;
+        }
+    }
+
+    if (veiksmas == 0 && studentai.empty()) {
+        return 0;
     }
 
     if (studentai.empty()) {
@@ -233,27 +225,7 @@ int main() {
         cout << "Neteisingas pasirinkimas. Iveskite 1 arba 2: ";
     }
 
-    sort(studentai.begin(), studentai.end(),
-        [](const Studentas& a, const Studentas& b) {
-
-            if (a.pavarde != b.pavarde) {
-                return a.pavarde < b.pavarde;
-            }
-
-            return a.vardas < b.vardas;
-        });
-
-    cout << endl;
-
-    cout << left
-         << setw(20) << "Vardas"
-         << setw(20) << "Pavarde"
-         << setw(15) << "Galutinis"
-         << endl;
-
-    cout << string(55, '-') << endl;
-
-    for (const Studentas& studentas : studentai) {
+    for (Studentas studentas : studentai) {
 
         double ndVidurkis = 0;
 
@@ -270,13 +242,9 @@ int main() {
         double ndMediana;
 
         if (surikiuotiPazymiai.size() % 2 == 1) {
-
             ndMediana =
                 surikiuotiPazymiai[surikiuotiPazymiai.size() / 2];
-
-        }
-        else {
-
+        } else {
             ndMediana =
                 (surikiuotiPazymiai[surikiuotiPazymiai.size() / 2 - 1]
                 + surikiuotiPazymiai[surikiuotiPazymiai.size() / 2])
@@ -286,25 +254,19 @@ int main() {
         double galutinis;
 
         if (pasirinkimas == 1) {
-
             galutinis =
-                0.4 * ndVidurkis +
-                0.6 * studentas.egzaminas;
-        }
-        else {
-
+                0.4 * ndVidurkis + 0.6 * studentas.egzaminas;
+        } else {
             galutinis =
-                0.4 * ndMediana +
-                0.6 * studentas.egzaminas;
+                0.4 * ndMediana + 0.6 * studentas.egzaminas;
         }
 
         cout << fixed << setprecision(2);
 
-        cout << left
-             << setw(20) << studentas.vardas
-             << setw(20) << studentas.pavarde
-             << setw(15) << galutinis
-             << endl;
+        cout << studentas.vardas << " "
+             << studentas.pavarde
+             << " Galutinis pazymys: "
+             << galutinis << endl;
     }
 
     return 0;
